@@ -5,10 +5,22 @@ all: rebuild
 
 rebuild: clean build
 
-build: cipher
+build: io_module.o calc_module.o parser.o stack.o
+	$(CC) $(CFLAGS) $^ graph.c -o ../build/graph
 
-cipher:
-	$(CC) $(CFLAGS)  cipher.c -o ../build/cipher
+
+io_module.o:
+	$(CC) $(CFLAGS) -c ./io_module/io_module.c
+
+calc_module.o:
+	$(CC) $(CFLAGS) -c ./calc_module/calc_module.c
+
+parser.o:
+	$(CC) $(CFLAGS) -c ./parse_module/parser.c
+
+stack.o:
+	$(CC) $(CFLAGS) -c ./data_structures/stack.c
+
 
 check:
 	@echo ----------	
